@@ -180,17 +180,6 @@ class UnorderedDoubleLinkedList:
                 print (current.get_data())
                 current = current.get_previous()
 
-
-    def get_node_by_item(self, item):
-        current = self.head
-        found = False
-        while current is not None and not found:
-            if current.get_data() == item:
-                found = current
-            else:
-                current = current.get_next()
-        return found
-
     def remove(self, item):
         current = self.head
         previous = None
@@ -207,36 +196,41 @@ class UnorderedDoubleLinkedList:
             return removed #item to exist doesn't exist
         else:
             previous.set_next(current.get_next())
+            next = current.get_next()
+            if next is None:
+                self.tail = previous
+            else:
+                next.set_previous(previous)
         return removed
 
 
 mylist = UnorderedList()
-#print(mylist.length()) #0
+print(mylist.length()) #0
 mylist.add(1)
 mylist.add(5)
 mylist.add(5467)
 mylist.add(748)
 
-# print(mylist.length())  # 4
-# print(mylist.search(5))  # True
-# print(mylist.get_node_by_item(5))  # node Object
-# print(mylist.search(2))  # False
-# print(mylist.remove(5))  # True
-# print(mylist.length())  # 3
-# print(mylist.search(5))  # False
-# mylist.iterate_list()
-# print('------------------------')
+print(mylist.length())  # 4
+print(mylist.search(5))  # True
+print(mylist.get_node_by_item(5))  # node Object
+print(mylist.search(2))  # False
+print(mylist.remove(5))  # True
+print(mylist.length())  # 3
+print(mylist.search(5))  # False
+mylist.iterate_list()
+print('------------------------')
 
 mylist2 = UnorderedList()
 
-# print(mylist2.length())  # 0
-# (mylist2.add(5))
-# mylist2.add(10)
-# mylist2.add(20)
-# print(mylist2.remove(10))  # True
-# print(mylist2.length())  #2
-# print(mylist2.head)  # Node Object
-# print(mylist2.remove(10)) # False
+print(mylist2.length())  # 0
+(mylist2.add(5))
+mylist2.add(10)
+mylist2.add(20)
+print(mylist2.remove(10))  # True
+print(mylist2.length())  #2
+print(mylist2.head)  # Node Object
+print(mylist2.remove(10)) # False
 
 my_double_list = UnorderedDoubleLinkedList()
 my_double_list.add(10)
@@ -244,5 +238,7 @@ my_double_list.add(50)
 my_double_list.add(99)
 my_double_list.add(2)
 print(my_double_list.length())  # 4
+my_double_list.remove(10)
+my_double_list.add(55)
 my_double_list.iterate_list()
 my_double_list.iterate_list_reverse()
